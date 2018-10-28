@@ -1,0 +1,23 @@
+@import 'variables/colors.scss';
+@import 'variables/font.scss';
+
+body {
+  background: $BASE_COVER_BACKGROUND_COLOR;
+  color: $BASE_FONT_COLOR;
+  font-size: $BASE_FONT_SIZE;
+}
+
+a {
+  &:link{
+    color: $TERTIARY_DARKEN_2_COLOR,
+  }
+
+  &:visited{
+    color: $SECONDARY_DARKEN_2_COLOR,
+  }
+
+  &:hover, &:active{
+    color: $PRIMARY_DARKEN_2_COLOR,
+  }
+}
+

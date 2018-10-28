@@ -21,13 +21,13 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#A69223', height: '10px' },
 
   /*
   ** Global CSS
   */
-  css: [],
-
+  css: ['normalize.css', '~/assets/scss/common.scss'],
+  sassResources: ['~/assets/scss/variables/*.scss'],
   /*
   ** Plugins to load before mounting the App
   */
@@ -38,7 +38,8 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'nuxt-sass-resources-loader'
   ],
   /*
   ** Axios module configuration
@@ -55,6 +56,18 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
+      const vueloader = config.module.rules.find(e => {
+        return e.test.toString() === '/\\.vue$/'
+      })
+
+      vueloader.options.cssModules = {
+        localIdentName:
+          process.env.NODE_ENV !== 'production'
+            ? '[path]--[local]---[hash:base64:8]'
+            : '[hash:base64:8]',
+        camelCase: true
+      }
+
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
