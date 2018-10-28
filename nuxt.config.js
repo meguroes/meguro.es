@@ -1,4 +1,6 @@
+import { createClient } from './plugins/contentful.js'
 const pkg = require('./package')
+const client = createClient()
 
 module.exports = {
   mode: 'spa',
@@ -13,9 +15,7 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
   /*
@@ -26,14 +26,12 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [
-  ],
+  css: [],
 
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-  ],
+  plugins: ['contentful'],
 
   /*
   ** Nuxt.js modules
@@ -66,6 +64,23 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+    }
+  },
+  generate: {
+    routes() {
+      return Promise.all([
+        client.getEntries({
+          content_type: 'post'
+        }),
+        client.getEntries({
+          content_type: 'meetup'
+        })
+      ]).then(([posts, meetups]) => {
+        return [
+          ...posts.items.map(post => `posts/${post.fields.slug}`),
+          ...meetups.items.map(meetup => `posts/${meetup.fields.number}`)
+        ]
+      })
     }
   }
 }
