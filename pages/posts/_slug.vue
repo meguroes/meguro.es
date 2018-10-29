@@ -10,6 +10,12 @@ import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 
 export default {
+  head() {
+    return {
+      title: `${this.post.fields.title} | Meguro.es`
+    }
+  },
+
   async asyncData({ params, error }) {
     const posts = await client.getEntries({
       content_type: 'post',

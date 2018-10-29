@@ -10,6 +10,11 @@ import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 
 export default {
+  head() {
+    return {
+      title: `${this.meetup.fields.title} | Meguro.es`
+    }
+  },
   async asyncData({ params, error }) {
     const meetups = await client.getEntries({
       content_type: 'meetup',
