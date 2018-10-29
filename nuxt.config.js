@@ -97,7 +97,7 @@ module.exports = {
       ]).then(([posts, meetups]) => {
         return [
           ...posts.items.map(post => `posts/${post.fields.slug}`),
-          ...meetups.items.map(meetup => `posts/${meetup.fields.number}`)
+          ...meetups.items.map(meetup => `meetup/${meetup.fields.number}`)
         ]
       })
     }
