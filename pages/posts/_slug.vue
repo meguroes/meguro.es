@@ -31,7 +31,7 @@ export default {
     }
   },
   validate({ params }) {
-    return /^[_a-z0-9]+$/.test(params.slug)
+    return /^[-a-z0-9]+$/.test(params.slug)
   }
 }
 </script>
