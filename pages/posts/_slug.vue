@@ -1,10 +1,18 @@
 <template>
   <div>
     <div v-html="markdownedBody"/>
-</div></template>
+    <div 
+      v-for="meetup in post.fields.meetups"
+      :key="meetup.sys.id">
+      <Meetup :meetup="meetup.fields" />
+    </div>
+  </div>
+</template>
 
 <script>
 import { createClient } from '~/plugins/contentful.js'
+import Meetup from '~/components/Meetup'
+
 const MarkdownIt = require('markdown-it')('commonmark')
 
 const client = createClient()
@@ -15,6 +23,7 @@ export default {
       title: `${this.post.fields.title} | Meguro.es`
     }
   },
+  components: { Meetup },
   computed: {
     markdownedBody() {
       return MarkdownIt.render(this.post.fields.body)
