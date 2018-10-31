@@ -1,7 +1,12 @@
 <template>
   <div :class="$style.wrapper">
     <CommonHeader />
-    <nuxt/>
+    <div :class="$style.inner">
+      <nuxt/>
+    </div>
+    <footer :class="$style.footer">
+      <small>&copy; Meguro.es</small>
+    </footer>
   </div>
 </template>
 
@@ -24,5 +29,18 @@ export default {
   @media screen and (min-width: 960px) {
     width: calc(100% - 10%);
   }
+}
+
+.inner {
+  padding: 1rem;
+  @media screen and (min-width: 960px) {
+    padding: 1rem 10%;
+  }
+}
+
+.footer {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 </style>

@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div :class="$style.hero">
+      <p :class="$style.heroText">
+        <span>Meguro.es は、目黒周辺で行う</span><br >
+        <span>フロントエンド開発者のための勉強会です。</span>
+      </p>
+      <img 
+        :class="$style.heroImage" 
+        src="~/assets/images/logo/with_text.png"
+      >
+    </div>
     <ul>
       <li 
         v-for="post in posts" 
@@ -30,11 +40,13 @@ export default {
     return Promise.all([
       client.getEntries({
         content_type: 'post',
-        order: '-fields.createdAt'
+        order: '-fields.createdAt',
+        limit: 10
       }),
       client.getEntries({
         content_type: 'meetup',
-        order: '-fields.date'
+        order: '-fields.date',
+        limit: 10
       })
     ])
       .then(([posts, meetups]) => {
@@ -47,3 +59,21 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" module>
+.heroText {
+  margin-bottom: 0;
+  font-size: $huge-font-size;
+  font-weight: bolder;
+  text-align: center;
+  @media screen and (max-width: 959px) {
+    font-size: $large-font-size;
+  }
+}
+
+.heroImage {
+  display: block;
+  max-width: 55%;
+  margin: 0 auto;
+}
+</style>

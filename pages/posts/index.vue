@@ -4,7 +4,7 @@
       <li 
         v-for="post in posts" 
         :key="post.sys.id">
-        {{ post.fields }}
+        <Post :post="post.fields" />
       </li>
     </ul>
   </div>
@@ -12,13 +12,16 @@
 
 <script>
 import { createClient } from '~/plugins/contentful.js'
+import Post from '~/components/Post'
 
 const client = createClient()
 
 export default {
+  components: { Post },
   async asyncData() {
     const posts = await client.getEntries({
-      content_type: 'post'
+      content_type: 'post',
+      order: '-fields.createdAt'
     })
 
     return {

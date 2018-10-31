@@ -4,7 +4,7 @@
       <li 
         v-for="meetup in meetups" 
         :key="meetup.sys.id">
-        {{ meetup.fields }}
+        <Meetup :meetup="meetup.fields" />
       </li>
     </ul>
   </div>
@@ -12,13 +12,16 @@
 
 <script>
 import { createClient } from '~/plugins/contentful.js'
+import Meetup from '~/components/Meetup'
 
 const client = createClient()
 
 export default {
+  components: { Meetup },
   async asyncData() {
     const meetups = await client.getEntries({
-      content_type: 'meetup'
+      content_type: 'meetup',
+      order: '-fields.date'
     })
 
     return {
