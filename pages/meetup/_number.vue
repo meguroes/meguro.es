@@ -1,6 +1,11 @@
 <template>
   <div>
-    {{ meetup }}
+    <h1>第{{ meetup.fields.number }}回の開催概要</h1>
+    <h2>開催日時</h2>
+    {{ meetup.fields.date }}
+    <h2>開催場所</h2>
+    {{ meetup.fields.locationName }}
+
   </div>
 </template>
 
