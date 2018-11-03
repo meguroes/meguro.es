@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div v-html="markdownedBody"/>
+    <div 
+      :class="$style.post" 
+      v-html="markdownedBody"/>
     <div 
       v-for="meetup in post.fields.meetups"
       :key="meetup.sys.id">
@@ -48,3 +50,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" module>
+.post {
+  img {
+    max-width: 100%;
+  }
+}
+</style>
