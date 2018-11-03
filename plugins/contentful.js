@@ -10,4 +10,9 @@ const config = {
 }
 
 // export `createClient` to use it in page components
-export const createClient = () => contentful.createClient(config)
+let client = null
+
+export const createClient = () => {
+  client = contentful.createClient(config)
+  return client
+}
