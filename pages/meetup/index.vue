@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ul>
+    <h1>イベント一覧</h1>
+    <ul :class="$style.list">
       <li 
         v-for="meetup in meetups" 
         :key="meetup.sys.id">
@@ -30,3 +31,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" module>
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+</style>

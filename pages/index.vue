@@ -15,7 +15,7 @@
       Meguro.es では、二ヶ月に一度フロントエンド開発者を対象にした勉強会(ミートアップ)を行っています。このサイトでは、過去のミートアップの情報や、運営に関する情報をお知らせします。
     </p>
     <h2>記事一覧</h2>
-    <ul>
+    <ul :class="$style.list">
       <li 
         v-for="post in posts" 
         :key="post.sys.id">
@@ -23,7 +23,7 @@
       </li>
     </ul>
     <h2>ミートアップ一覧</h2>
-    <ul>
+    <ul :class="$style.list">
       <li 
         v-for="meetup in meetups" 
         :key="meetup.sys.id">
@@ -82,5 +82,11 @@ export default {
   max-width: 50vw;
   max-height: 60vh;
   margin: 0 auto;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 </style>
