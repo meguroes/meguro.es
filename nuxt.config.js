@@ -44,7 +44,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['contentful'],
+  plugins: ['contentful', '~/plugins/filters.js'],
 
   /*
   ** Nuxt.js modules

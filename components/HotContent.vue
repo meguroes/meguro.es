@@ -17,16 +17,8 @@
 <script>
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
-const WEEKDAY = ['日', '月', '火', '水', '木', '金', '土']
 
 export default {
-  filters: {
-    toJPDate(dateText) {
-      const date = new Date(dateText)
-      return `${date.getFullYear()}年 ${date.getMonth() +
-        1}月 ${date.getDate()}日 (${WEEKDAY[date.getDay()]})`
-    }
-  },
   components: {},
   data: function() {
     return {
