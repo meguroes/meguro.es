@@ -1,15 +1,20 @@
 <template>
   <div>
     <div :class="$style.hero">
-      <p :class="$style.heroText">
+      <h1 :class="$style.heroText">
         <span>Meguro.es は、目黒周辺で行う</span><br >
         <span>フロントエンド開発者のための勉強会です。</span>
-      </p>
+      </h1>
       <img 
         :class="$style.heroImage" 
+        alt="meguro.risu"
         src="~/assets/images/logo/with_text.png"
       >
     </div>
+    <p>
+      Meguro.es では、二ヶ月に一度フロントエンド開発者を対象にした勉強会(ミートアップ)を行っています。このサイトでは、過去のミートアップの情報や、運営に関する情報をお知らせします。
+    </p>
+    <h2>記事一覧</h2>
     <ul>
       <li 
         v-for="post in posts" 
@@ -17,6 +22,7 @@
         <Post :post="post.fields" />
       </li>
     </ul>
+    <h2>ミートアップ一覧</h2>
     <ul>
       <li 
         v-for="meetup in meetups" 
@@ -73,7 +79,8 @@ export default {
 
 .heroImage {
   display: block;
-  max-width: 55%;
+  max-width: 50vw;
+  max-height: 60vh;
   margin: 0 auto;
 }
 </style>
