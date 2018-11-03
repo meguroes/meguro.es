@@ -8,6 +8,14 @@ body {
   line-height: 1.4;
 }
 
+h1 {
+  font-size: $huge-font-size;
+}
+
+h2 {
+  font-size: $x-large-font-size;
+}
+
 a {
   &:link{
     color: $TERTIARY_DARKEN_2_COLOR,
