@@ -1,6 +1,18 @@
 <template>
-  <nuxt-link :to="path">
-    {{ post.title }}
+  <nuxt-link 
+    :to="path" 
+    :class="$style.wrapper" >
+    <div :class="$style.inner">
+      {{ post.title }}
+      {{ post.createdAt | toJPDate }}
+      <div 
+        v-for="meetup in post.meetups" 
+        :key="meetup.sys.id">
+        <nuxt-link 
+          :to="meetupPath(meetup)" 
+          :class="$style.meetupLink">{{ meetup.fields.title }}</nuxt-link>
+      </div>
+    </div>
   </nuxt-link>
 </template>
 
@@ -16,26 +28,60 @@ export default {
     path() {
       return `/posts/${this.post.slug}`
     }
+  },
+  methods: {
+    meetupPath(meetup) {
+      return `/meetup/${meetup.fields.number}`
+    }
   }
 }
 </script>
 
 <style lang="scss" module>
 .wrapper {
-  width: 240px;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  display: block;
+  border-radius: 0 0 10px 0;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: $BASE_BACKGROUND_COLOR;
+  transition: 200ms background ease-in;
+
+  &:link,
+  &:hover,
+  &:active,
+  &:visited {
+    color: $BASE_FONT_COLOR;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background: $PRIMARY_LIGHTEN_2_COLOR;
+  }
 }
 
-.logo {
-  width: 190px;
-  padding-top: 1rem;
+.inner {
+  padding: 0 1rem 0;
 }
 
-.text {
-  font-size: $x-small-font-size;
+.meetupLink {
+  font-size: $tiny-font-size;
   font-weight: bolder;
+  padding: 0.1rem 0.2rem 0.1rem 0.1rem;
+  background: $TERTIARY_DARKEN_2_COLOR;
+  border-radius: 0 0 0.4rem 0;
+  transition: 100ms background ease-in;
+
+  &:link,
+  &:hover,
+  &:active,
+  &:visited {
+    color: $TERTIARY_LIGHTEN_2_COLOR;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background: $TERTIARY_COLOR;
+  }
 }
 </style>
