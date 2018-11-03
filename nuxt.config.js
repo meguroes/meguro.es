@@ -19,6 +19,23 @@ module.exports = {
         content:
           'Meguro.es は 目黒(区|駅)周辺で2か月に1回行われるフロントエンド開発者のMeetup(勉強会)です。' +
           '目黒周辺にお住まいの方・お勤めの方はもちろんのこと、フロントエンドに興味がある方はどなたでも参加大歓迎です'
+      },
+      {
+        hid: 'og:title',
+        name: 'og:title',
+        content: 'Meguro.es | 目黒周辺のFront-end mettup.'
+      },
+      {
+        hid: 'og:description',
+        name: 'og:description',
+        content:
+          'Meguro.es は 目黒(区|駅)周辺で2か月に1回行われるフロントエンド開発者のMeetup(勉強会)です。' +
+          '目黒周辺にお住まいの方・お勤めの方はもちろんのこと、フロントエンドに興味がある方はどなたでも参加大歓迎です'
+      },
+      {
+        hid: 'og:image',
+        name: 'og:image',
+        content: 'https://meguro.es/meguroes-og.png'
       }
     ],
     link: [
