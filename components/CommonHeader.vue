@@ -22,9 +22,17 @@ export default {}
 
 <style lang="scss" module>
 .wrapper {
+  position: sticky;
+  top: 0;
+  padding: 0.5rem 0;
+  background: $BASE_BACKGROUND_COLOR;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 959px) {
+    position: static;
+  }
 }
 
 .logoBox {
@@ -32,11 +40,11 @@ export default {}
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  padding: 0 1rem;
+  padding: 0.2rem 1rem;
 }
 
 .globalMenu {
-  padding: 0 1rem;
+  padding: 0 1rem 0 0;
   > a {
     @media screen and (max-width: 959px) {
       &:not(:first-of-type) {
@@ -44,7 +52,8 @@ export default {}
       }
       font-size: $tiny-font-size;
       margin: 0rem;
-      padding: 0.1rem;
+      padding: 0.5rem 0.2rem;
+      word-break: keep-all;
     }
     display: inline;
     font-size: $small-font-size;
