@@ -21,7 +21,14 @@ module.exports = {
           '目黒周辺にお住まいの方・お勤めの方はもちろんのこと、フロントエンドに興味がある方はどなたでも参加大歓迎です'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      {
+        rel: 'shortcut icon',
+        type: 'image/png',
+        href: '/favicon.png',
+        sizes: '128x128'
+      }
+    ]
   },
 
   /*
