@@ -36,6 +36,11 @@ module.exports = {
         hid: 'og:image',
         name: 'og:image',
         content: 'https://meguro.es/meguroes-og.png'
+      },
+      {
+        hid: 'og:site_name',
+        name: 'og:site_name',
+        content: 'Meguro.es'
       }
     ],
     link: [
@@ -120,6 +125,7 @@ module.exports = {
     }
   },
   generate: {
+    fallback: true,
     routes() {
       return Promise.all([
         client.getEntries({
