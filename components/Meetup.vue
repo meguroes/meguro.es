@@ -34,6 +34,10 @@ export default {
   background: $BASE_BACKGROUND_COLOR;
   transition: 200ms background ease-in;
 
+  @media screen and (max-width: 480px) {
+    border: 1px dashed rgba($PRIMARY_LIGHTEN_2_COLOR, 0.8);
+  }
+
   &:link,
   &:hover,
   &:active,
@@ -48,7 +52,10 @@ export default {
 }
 
 .inner {
-  padding: 0 1rem 0;
+  padding: 0 1rem;
+  @media screen and (max-width: 480px) {
+    padding: 0 0.2rem;
+  }
 }
 
 .meetupLink {
