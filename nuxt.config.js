@@ -58,6 +58,10 @@ module.exports = {
   */
   loading: { color: '#A69223', height: '10px' },
 
+  transition: {
+    name: 'transition'
+  },
+
   /*
   ** Global CSS
   */

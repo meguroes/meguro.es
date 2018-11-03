@@ -44,7 +44,6 @@ export default {
 <style lang="scss" module>
 .wrapper {
   position: relative;
-  margin: 1rem 0 2.5rem;
   border: 2px solid $SECONDARY_COLOR;
   background: $PRIMARY_LIGHTEN_2_COLOR;
   border-radius: 0 0 20px 0;
