@@ -53,7 +53,13 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    'nuxt-sass-resources-loader'
+    'nuxt-sass-resources-loader',
+    [
+      '@nuxtjs/google-analytics',
+      {
+        id: 'UA-128582081-1'
+      }
+    ]
   ],
   workbox: {
     dev: true
