@@ -41,6 +41,11 @@ module.exports = {
         hid: 'og:site_name',
         name: 'og:site_name',
         content: 'Meguro.es'
+      },
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: 'summary'
       }
     ],
     link: [
