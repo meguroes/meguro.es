@@ -1,5 +1,16 @@
 <template>
   <div>
+    <div :class="$style.imageList">
+      <div>
+        <img src="~/assets/images/photo/meguroes-photo1.jpg" >
+      </div>
+      <div>
+        <img src="~/assets/images/photo/meguroes-photo3.jpg" >
+      </div>
+      <div>
+        <img src="~/assets/images/photo/meguroes-photo2.jpg" >
+      </div>
+    </div>
     <div 
       :class="$style.post" 
       v-html="markdownedBody"/>
@@ -36,19 +47,35 @@ export default {
 </script>
 
 <style lang="scss" module>
-.heroText {
-  margin-bottom: 0;
-  font-size: $huge-font-size;
-  font-weight: bolder;
-  text-align: center;
-  @media screen and (max-width: 959px) {
-    font-size: $large-font-size;
-  }
-}
+.imageList {
+  margin: 2rem 0;
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
 
-.heroImage {
-  display: block;
-  max-width: 55%;
-  margin: 0 auto;
+  div {
+    width: 32%;
+    img {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 959px) {
+    div {
+      width: 300px;
+      img {
+        width: 100%;
+      }
+    }
+
+    div:last-of-type {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 679px) {
+    div:not(:first-of-type) {
+      display: none;
+    }
+  }
 }
 </style>
