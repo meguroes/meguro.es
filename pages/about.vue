@@ -11,7 +11,7 @@
         <img src="~/assets/images/photo/meguroes-photo2.jpg" >
       </div>
     </div>
-    <div 
+    <section 
       :class="$style.post" 
       v-html="markdownedBody"/>
   </div>

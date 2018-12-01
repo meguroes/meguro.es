@@ -9,11 +9,26 @@ body {
 }
 
 h1 {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
   font-size: $huge-font-size;
 }
 
 h2 {
+  padding-top: 1rem;
+  padding-bottom: .5rem;
   font-size: $x-large-font-size;
+}
+
+h3 {
+  padding-top: .8rem;
+  padding-bottom: .4rem;
+  font-size: $normal-font-size;
+}
+
+h4 {
+  padding-bottom: .2rem;
+  font-size: $small-font-size;
 }
 
 a {
