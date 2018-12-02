@@ -3,8 +3,6 @@ const pkg = require('./package')
 const client = createClient()
 
 module.exports = {
-  mode: 'spa',
-
   /*
   ** Headers of the page
   */
