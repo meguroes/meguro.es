@@ -135,6 +135,7 @@ module.exports = {
   },
   generate: {
     fallback: true,
+    interval: 100,
     routes() {
       return Promise.all([
         client.getEntries({
@@ -145,8 +146,14 @@ module.exports = {
         })
       ]).then(([posts, meetups]) => {
         return [
-          ...posts.items.map(post => `posts/${post.fields.slug}`),
-          ...meetups.items.map(meetup => `meetup/${meetup.fields.number}`)
+          ...posts.items.map(post => ({
+            route: `posts/${post.fields.slug}`,
+            payload: post
+          })),
+          ...meetups.items.map(meetup => ({
+            route: `meetup/${meetup.fields.number}`,
+            payload: meetup
+          }))
         ]
       })
     }

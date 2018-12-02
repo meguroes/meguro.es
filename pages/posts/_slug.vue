@@ -22,7 +22,21 @@ const client = createClient()
 export default {
   head() {
     return {
-      title: `${this.post.fields.title} | Meguro.es`
+      title: `${this.post.fields.title} | Meguro.es`,
+      meta: [
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: `${this.post.fields.title} | 目黒周辺のFront-end meetup.`
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content:
+            'Meguro.es は 目黒(区|駅)周辺で2か月に1回行われるフロントエンド開発者のMeetup(勉強会)です。' +
+            '目黒周辺にお住まいの方・お勤めの方はもちろんのこと、フロントエンドに興味がある方はどなたでも参加大歓迎です'
+        }
+      ]
     }
   },
   components: { Meetup },
@@ -31,7 +45,13 @@ export default {
       return MarkdownIt.render(this.post.fields.body)
     }
   },
-  async asyncData({ params, error }) {
+  async asyncData({ params, error, payload }) {
+    if (payload) {
+      return {
+        post: payload
+      }
+    }
+
     const posts = await client.getEntries({
       content_type: 'post',
       'fields.slug': params.slug
