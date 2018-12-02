@@ -9,7 +9,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Meguro.es | 目黒周辺のFront-end mettup.',
+    title: 'Meguro.es | 目黒周辺のFront-end meetup.',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -23,7 +23,7 @@ module.exports = {
       {
         hid: 'og:title',
         name: 'og:title',
-        content: 'Meguro.es | 目黒周辺のFront-end mettup.'
+        content: 'Meguro.es | 目黒周辺のFront-end meetup.'
       },
       {
         hid: 'og:description',
