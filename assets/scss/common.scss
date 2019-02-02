@@ -45,6 +45,13 @@ a {
   }
 }
 
+blockquote {
+  margin-inline-start: 20px;
+  padding-left: 20px;
+  border-left: 8px solid $PRIMARY_DARKEN_2_COLOR;
+  font-size: $small-font-size;
+}
+
 .transition-enter-active {
   transition: opacity 0.2s ease-in 0.1s, transform 0.6s ease;
   overflow: hidden;
