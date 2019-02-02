@@ -12,7 +12,7 @@
           <li><nuxt-link to="/guideline">ガイドライン</nuxt-link></li>
           <li><nuxt-link to="/meetup">イベント</nuxt-link></li>
           <li><nuxt-link to="/posts">記事</nuxt-link></li>
-          <li><a href="https://twitter.com/meguroes">Twitter @meguroe</a></li>
+          <li><a href="https://twitter.com/meguroes">Twitter @meguroes</a></li>
       </ul></nav>
       <small>&copy; Meguro.es</small>
     </footer>
