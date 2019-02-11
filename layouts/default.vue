@@ -24,7 +24,18 @@ import CommonHeader from '~/components/CommonHeader'
 import HotContent from '~/components/HotContent'
 
 export default {
-  components: { CommonHeader, HotContent }
+  components: { CommonHeader, HotContent },
+  head() {
+    return {
+      script: [
+        {
+          async: 'async',
+          src: 'https://platform.twitter.com/widgets.js',
+          charset: 'utf-8'
+        }
+      ]
+    }
+  }
 }
 </script>
 
