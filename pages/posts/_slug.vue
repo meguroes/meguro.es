@@ -54,6 +54,15 @@ export default {
       return MarkdownIt.render(this.post.fields.body)
     }
   },
+  watch: {
+    markdownedBody() {
+      try {
+        twttr.widgets.load()
+      } catch (e) {
+        console.error(e)
+      }
+    }
+  },
   async asyncData({ params, error, payload }) {
     if (payload) {
       return {
