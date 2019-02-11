@@ -27,11 +27,13 @@ export default {
         {
           hid: 'og:title',
           name: 'og:title',
+          property: 'og:title',
           content: `${this.post.fields.title} | 目黒周辺のFront-end meetup.`
         },
         {
           hid: 'og:description',
           name: 'og:description',
+          property: 'og:description',
           content:
             this.post.fields.description ||
             'Meguro.es は 目黒(区|駅)周辺で2か月に1回行われるフロントエンド開発者のMeetup(勉強会)です。' +
