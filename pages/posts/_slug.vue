@@ -59,7 +59,7 @@ export default {
   watch: {
     markdownedBody() {
       try {
-        twttr.widgets.load()
+        setTimeout(() => twttr.widgets.load(), 1000)
       } catch (e) {
         console.error(e)
       }
