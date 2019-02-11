@@ -56,14 +56,14 @@ export default {
       return MarkdownIt.render(this.post.fields.body)
     }
   },
-  watch: {
-    markdownedBody: function(_value) {
+  created() {
+    setTimeout(() => {
       try {
-        setTimeout(() => twttr.widgets.load(), 1000)
+        twttr.widgets.load()
       } catch (e) {
         console.error(e)
       }
-    }
+    }, 20)
   },
   async asyncData({ params, error, payload }) {
     if (payload) {
