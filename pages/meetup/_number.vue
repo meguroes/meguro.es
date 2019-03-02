@@ -12,12 +12,20 @@
     >
       <Post :post="post.fields" />
     </div>
+    <h2 v-if="sponsors.length">スポンサー</h2>
+    <div
+      v-for="sponsor in sponsors"
+      :key="sponsor.fields.id"
+    >
+      <Sponsor :sponsor="sponsor.fields" />
+    </div>
   </div>
 </template>
 
 <script>
 import { createClient } from '~/plugins/contentful.js'
 import Post from '~/components/Post.vue'
+import Sponsor from '~/components/Sponsor.vue'
 
 const client = createClient()
 
@@ -42,7 +50,17 @@ export default {
     }
   },
   components: {
-    Post
+    Post,
+    Sponsor
+  },
+  created() {
+    setTimeout(() => {
+      try {
+        twttr.widgets.load()
+      } catch (e) {
+        console.error(e)
+      }
+    }, 20)
   },
   async asyncData({ params, error, payload }) {
     if (payload) {
@@ -55,18 +73,24 @@ export default {
       'fields.number': params.number
     })
 
+    if (!meetups.total) {
+      error({ statusCode: 404, message: 'ページが見つかりません' })
+    }
+
     const posts = await client.getEntries({
       content_type: 'post',
       'fields.meetups.sys.id': meetups.items[0].sys.id
     })
 
-    if (!meetups.total) {
-      error({ statusCode: 404, message: 'ページが見つかりません' })
-    }
+    const sponsors = await client.getEntries({
+      content_type: 'sponsor',
+      'fields.meetup.sys.id': meetups.items[0].sys.id
+    })
 
     return {
       meetup: meetups.items[0],
-      posts: posts.items
+      posts: posts.items,
+      sponsors: sponsors.items
     }
   },
   validate({ params }) {

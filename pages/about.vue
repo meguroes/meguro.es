@@ -14,34 +14,61 @@
     <section 
       :class="$style.post" 
       v-html="markdownedBody"/>
+    <div
+      v-for="sponsor in sponsors"
+      :key="sponsor.fields.id"
+    >
+      <h1 v-if="sponsors.length">個人スポンサー</h1>
+      継続的なMeguro.esの運営を支えていただいている、個人スポンサーの紹介をします。
+      各回のスポンサーは、<nuxt-link to="meetup">イベント一覧</nuxt-link>から御覧ください。
+      <Sponsor
+        :sponsor="sponsor.fields"
+        :class="$style.sponsor" />
+    </div>
   </div>
 </template>
 
 <script>
 import { createClient } from '~/plugins/contentful.js'
+import Sponsor from '~/components/Sponsor.vue'
+
 const client = createClient()
 const MarkdownIt = require('markdown-it')('commonmark')
 
 export default {
+  components: {
+    Sponsor
+  },
   computed: {
     markdownedBody() {
       return MarkdownIt.render(this.article.fields.body)
     }
   },
-  asyncData() {
-    return Promise.all([
-      client.getEntries({
-        content_type: 'article',
-        'fields.name': 'about',
-        limit: 1
-      })
-    ])
-      .then(([articles]) => {
-        return {
-          article: articles.items[0]
-        }
-      })
-      .catch(console.error)
+  created() {
+    setTimeout(() => {
+      try {
+        twttr.widgets.load()
+      } catch (e) {
+        console.error(e)
+      }
+    }, 20)
+  },
+  async asyncData() {
+    const about = await client.getEntries({
+      content_type: 'article',
+      'fields.name': 'about',
+      limit: 1
+    })
+
+    const sponsors = await client.getEntries({
+      content_type: 'sponsor',
+      'fields.meetup.sys.id': about.items[0].sys.id
+    })
+
+    return {
+      article: about.items[0],
+      sponsors: sponsors.items
+    }
   }
 }
 </script>
@@ -77,5 +104,9 @@ export default {
       display: none;
     }
   }
+}
+
+.sponsor {
+  margin: 1rem 0;
 }
 </style>
