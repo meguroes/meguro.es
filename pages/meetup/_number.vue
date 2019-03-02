@@ -5,12 +5,19 @@
     {{ meetup.fields.date }}
     <h2>開催場所</h2>
     {{ meetup.fields.locationName }}
-
+    <h2 v-if="posts.length">関連投稿</h2>
+    <div
+      v-for="post in posts"
+      :key="post.id"
+    >
+      <Post :post="post.fields" />
+    </div>
   </div>
 </template>
 
 <script>
 import { createClient } from '~/plugins/contentful.js'
+import Post from '~/components/Post.vue'
 
 const client = createClient()
 
@@ -34,6 +41,9 @@ export default {
       ]
     }
   },
+  components: {
+    Post
+  },
   async asyncData({ params, error, payload }) {
     if (payload) {
       return {
@@ -45,12 +55,18 @@ export default {
       'fields.number': params.number
     })
 
+    const posts = await client.getEntries({
+      content_type: 'post',
+      'fields.meetups.sys.id': meetups.items[0].sys.id
+    })
+
     if (!meetups.total) {
       error({ statusCode: 404, message: 'ページが見つかりません' })
     }
 
     return {
-      meetup: meetups.items[0]
+      meetup: meetups.items[0],
+      posts: posts.items
     }
   },
   validate({ params }) {
