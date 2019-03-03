@@ -1,7 +1,7 @@
 <template>
   <section :class="$style.inner">
     <h1 :class="$style.h1">
-      <img 
+      <img
         v-for="type in types"
         :key="type.title"
         :title="type.title"
@@ -12,8 +12,8 @@
       {{ sponsor.name }}様
       <span :class="$style.category">（{{ sponsor.type | sponsorJP }}）</span>
     </h1>
-    <div 
-      :class="$style.post" 
+    <div
+      :class="$style.post"
       v-html="markdownedBody"
     />
   </section>
