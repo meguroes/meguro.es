@@ -10,7 +10,7 @@
         height="24"
       >
       {{ sponsor.name }}様
-      <span :class="$style.category">（{{ sponsor.type | sponsorJP }}）</span>
+      <span :class="$style.category">{{ types.map(type => type.jp).join('・') }}</span>
     </h1>
     <div
       :class="$style.post"
@@ -22,28 +22,24 @@
 <script>
 const MarkdownIt = require('markdown-it')('commonmark')
 
+const sponsorJP = type => {
+  switch (type) {
+    case 'venue':
+      return '会場提供'
+    case 'platinum':
+      return '特別スポンサー'
+    case 'gold':
+      return 'スポンサー'
+    case 'drink':
+      return 'ドリンクサポート'
+    case 'sakura':
+      return '個人スポンサー'
+    case 'sanma':
+      return '個人サポーター'
+  }
+}
+
 export default {
-  filters: {
-    sponsorJP(type) {
-      switch (type) {
-        case 'Venue_Platinum':
-          return '会場提供・特別スポンサー'
-        case 'Platinum':
-          return '特別スポンサー'
-        case 'Venue_Gold':
-          return '会場提供・スポンサー'
-        case 'Gold':
-          return 'スポンサー'
-        case 'Venue':
-          return '会場提供'
-        case 'Sakura':
-          return '個人スポンサー'
-        case 'Sanma':
-          return '個人サポーター'
-      }
-      return type
-    }
-  },
   props: {
     sponsor: {
       type: Object,
@@ -60,7 +56,8 @@ export default {
         .split('_')
         .map(type => ({
           title: type,
-          src: require(`~/assets/images/sponsor/${type}.svg`)
+          src: require(`~/assets/images/sponsor/${type}.svg`),
+          jp: sponsorJP(type)
         }))
     }
   }
