@@ -35,7 +35,7 @@ const sponsorJP = type => {
     case 'sakura':
       return '個人スポンサー'
     case 'sanma':
-      return '個人サポーター'
+      return '個人スポンサー'
   }
 }
 
