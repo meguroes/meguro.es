@@ -1,9 +1,18 @@
 <template>
   <div>
-    <div 
-      :class="$style.post" 
+    <section
+      :class="$style.post"
       v-html="markdownedBody"/>
-    <div 
+    <section v-if="sponsors.length">
+      <h1>スポンサー</h1>
+      <div
+        v-for="sponsor in sponsors"
+        :key="sponsor.fields.id"
+      >
+        <Sponsor :sponsor="sponsor.fields" />
+      </div>
+    </section>
+    <div
       v-for="meetup in post.fields.meetups"
       :key="meetup.sys.id">
       <Meetup :meetup="meetup.fields" />
@@ -14,6 +23,7 @@
 <script>
 import { createClient } from '~/plugins/contentful.js'
 import Meetup from '~/components/Meetup'
+import Sponsor from '~/components/Sponsor.vue'
 
 const MarkdownIt = require('markdown-it')('commonmark')
 
@@ -88,8 +98,14 @@ export default {
       error({ statusCode: 404, message: 'ページが見つかりません' })
     }
 
+    const sponsors = await client.getEntries({
+      content_type: 'sponsor',
+      'fields.meetup.sys.id': posts.items[0].sys.id
+    })
+
     return {
-      post: posts.items[0]
+      post: posts.items[0],
+      sponsors: sponsors.items
     }
   },
   validate({ params }) {
