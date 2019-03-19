@@ -5,8 +5,8 @@
         <span>Meguro.es は、目黒周辺で行う</span><br >
         <span>フロントエンド開発者のための勉強会です。</span>
       </h1>
-      <img 
-        :class="$style.heroImage" 
+      <img
+        :class="$style.heroImage"
         alt="meguro.risu"
         src="~/assets/images/logo/with_text.png"
       >
@@ -16,16 +16,16 @@
     </p>
     <h2>記事一覧</h2>
     <ul :class="$style.list">
-      <li 
-        v-for="post in posts" 
+      <li
+        v-for="post in posts"
         :key="post.sys.id">
         <Post :post="post.fields" />
       </li>
     </ul>
     <h2>ミートアップ一覧</h2>
     <ul :class="$style.list">
-      <li 
-        v-for="meetup in meetups" 
+      <li
+        v-for="meetup in meetups"
         :key="meetup.sys.id">
         <Meetup :meetup="meetup.fields" />
       </li>
