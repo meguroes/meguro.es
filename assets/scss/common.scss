@@ -1,9 +1,11 @@
 @import 'variables/colors.scss';
 @import 'variables/font.scss';
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap');
 
 body {
   background: $BASE_COVER_BACKGROUND_COLOR;
   color: $BASE_FONT_COLOR;
+  font-family: 'Noto Sans JP', sans-serif;
   font-size: $BASE_FONT_SIZE;
   line-height: 1.4;
 }
